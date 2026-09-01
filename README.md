@@ -29,7 +29,7 @@ export void hello()
 and:
 
 ``` cpp
-import math;
+import helloworld;
 ```
 
 CMake supports dependency scanning for C++ modules and automatically determines
