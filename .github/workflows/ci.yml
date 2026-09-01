@@ -1,0 +1,53 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+permissions:
+    contents: read
+
+jobs:
+    build:
+        name: Clang 21 / C++23 Modules
+        runs-on: ubuntu-24.04
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v7
+
+            - name: Install LLVM 21
+              run: |
+                wget https://apt.llvm.org/llvm.sh
+                chmod +x llvm.sh
+                sudo ./llvm.sh 21
+
+                sudo apt-get install -y \
+                  clang-tools-21 \
+                  clangd-21 \
+                  libc++-21-dev \
+                  libc++abi-21-dev \
+                  ninja-build
+            
+            - name: Install CMake 4.4.3
+              run: |
+                pipx install cmake==4.4.3
+                echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+            
+            - name: Show Toolchain Versions
+              run: |
+                cmake --version
+                clang++-21 --version
+                ninja --version
+            
+            - name: Configure
+              run: cmake --preset clang21
+            
+            - name: Build
+              run: cmake --build --preset clang21
+            
+            - name: Run
+              run: ./build-clang/MyProgram
+            
