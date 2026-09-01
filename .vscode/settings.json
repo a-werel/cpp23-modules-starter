@@ -1,0 +1,8 @@
+{
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.path": "/usr/bin/clangd-21",
+    "clangd.arguments": [
+        "--compile-commands-dir=build-clang",
+        "--query-driver=/usr/bin/clang++-21"
+    ],
+}

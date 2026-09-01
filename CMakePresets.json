@@ -1,0 +1,27 @@
+{
+    "version": 6,
+
+    "configurePresets": [
+        {
+            "name": "clang21",
+            "displayName": "Clang 21 + libc++",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build-clang",
+
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "/usr/bin/clang++-21",
+                "CMAKE_CXX_FLAGS": "-stdlib=libc++",
+                "CMAKE_CXX_STDLIB_MODULES_JSON": "/usr/lib/llvm-21/lib/libc++.modules.json",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
+        }
+    ],
+
+    "buildPresets": [
+        {
+            "name": "clang21",
+            "configurePreset": "clang21"
+        }
+    ]
+}
