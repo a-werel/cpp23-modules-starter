@@ -1,5 +1,7 @@
 # C++23 Modules + `import std` with Clang, CMake and VS Code
 
+Tested: Ubuntu 24.04 / WSL · Clang 21 · CMake 4.4+
+
 The included clang21 preset targets Ubuntu/WSL. Other distributions may require adjusting compiler and libc++ module metadata paths.
 
 A minimal C++23 project configured to use modern C++ modules with:
@@ -14,11 +16,13 @@ A minimal C++23 project configured to use modern C++ modules with:
 The setup also works as a base for user-defined C++ modules such as:
 
 ```cpp
-export module math;
+export module helloworld;
 
-export int add(int a, int b)
+import std;
+
+export void hello() 
 {
-    return a + b;
+    std::cout << "Hello, World!\n";
 }
 ```
 
@@ -33,6 +37,14 @@ the order in which module interfaces and their users must be compiled.
 
 The additional libc++.modules.json configuration in this repository is
 specifically required for the standard library module (import std).
+
+## Project Structure
+.
+├── helloworld.cppm      # user-defined C++ module
+├── my_program.cpp       # imports std and helloworld
+├── CMakeLists.txt
+├── CMakePresets.json
+└── .vscode/
 
 ## Why?
 
@@ -61,12 +73,13 @@ tested on Ubuntu 24.04 / WSL.
 
 This repository is tested with:
 
-Tool	Version
-Clang	21
-clangd	21
-libc++	21
-CMake	4.4+
-Ninja	1.11+
+| Tool   | Version |
+|--------|---------|
+| Clang  | 21      |
+| clangd | 21      |
+| libc++ | 21      |
+| CMake  | 4.4+    |
+| Ninja  | 1.11+   |
 
 Check your installation:
 
