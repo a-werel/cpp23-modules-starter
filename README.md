@@ -1,5 +1,7 @@
 # C++23 Modules + `import std` with Clang, CMake and VS Code
 
+The included clang21 preset targets Ubuntu/WSL. Other distributions may require adjusting compiler and libc++ module metadata paths.
+
 A minimal C++23 project configured to use modern C++ modules with:
 
 - Clang 21
@@ -151,6 +153,7 @@ Run:
 Expected output:
 
 ``` bash
+Hello, World!
 Hello, World!
 ```
 
